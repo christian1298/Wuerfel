@@ -4,15 +4,15 @@
  * and open the template in the editor.
  */
 
-package wuerfel.controller;
+package wuerfel.model;
 
 /**
  *
  * @author Christian
  */
-public class Publisher 
+class synchronous 
 {
-  public Publisher()
+  public synchronous()
   {
   
   }

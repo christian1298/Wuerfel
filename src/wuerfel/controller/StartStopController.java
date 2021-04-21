@@ -8,6 +8,8 @@ package wuerfel.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import wuerfel.model.DataModel;
+import wuerfel.view.View;
 
 /**
  *
@@ -15,19 +17,31 @@ import java.awt.event.ActionListener;
  */
 public class StartStopController implements ActionListener
 {
-  public StartStopController()
-  {
+  private View view;
+  private DataModel model;
   
+  public StartStopController(DataModel model,View view)
+  {
+    this.view = view;
+    this.model = model;
   }
   
   public void RegisterEvents()
   {
-    
+    view.getBtnStart().addActionListener(this);
+    view.getBtnStop().addActionListener(this);
   }
 
   @Override
   public void actionPerformed(ActionEvent e)
   {
-    
+    if(e.getSource() == view.getBtnStart())
+    {
+      model.start();
+    }
+    else
+    {
+      model.stop();
+    }
   }
 }
