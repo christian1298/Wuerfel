@@ -38,6 +38,7 @@ public class DataModel implements Runnable
   public synchronized void start()
   {
     running = true;
+    
     // LSG 3 \\
     notifyAll();
     // LSG 3 \\
@@ -48,6 +49,7 @@ public class DataModel implements Runnable
   public synchronized void stop()
   {
     running = false;
+    
     // LSG 3 \\
     notifyAll();
     // LSG 3 \\
