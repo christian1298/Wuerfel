@@ -6,10 +6,13 @@
 
 package wuerfel.model;
 
+
+import java.util.logging.Logger;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.SubmissionPublisher;
+import wuerfel.util.OhmLogger;
 
 /**
  *
@@ -17,10 +20,12 @@ import java.util.concurrent.SubmissionPublisher;
  */
 public class DataModel implements Runnable
 {
+  private static Logger lg = OhmLogger.getLogger();
+  
   private int val;
   private SubmissionPublisher<Integer> iPublisher;
   private ExecutorService eService;
-  private boolean running;
+  private volatile boolean running;
   
   public DataModel()
   {
@@ -38,7 +43,7 @@ public class DataModel implements Runnable
   public synchronized void start()
   {
     running = true;
-    
+    lg.info("Start");
     // LSG 3 \\
     notifyAll();
     // LSG 3 \\
@@ -49,7 +54,7 @@ public class DataModel implements Runnable
   public synchronized void stop()
   {
     running = false;
-    
+    lg.info("Stop");
     // LSG 3 \\
     notifyAll();
     // LSG 3 \\
@@ -103,7 +108,7 @@ public class DataModel implements Runnable
 //      {
 //        try
 //        {
-//          wait();
+//          this.wait();
 //        }
 //        catch(InterruptedException e)
 //        {
